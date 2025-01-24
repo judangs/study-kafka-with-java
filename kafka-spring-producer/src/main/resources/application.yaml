@@ -1,0 +1,7 @@
+# 카프카 프로듀서 설정들
+# 카프카 클라이언트 라이브러리를 사용할 때 필수 옵션이었던 bootstrap-servers, key-serializer, value-serializer를 선언하지 않아도 오류가 발생하지 않는다.
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      acks: all
