@@ -1,3 +1,5 @@
+package base;
+
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -18,6 +20,7 @@ public class AsyncConsumer {
 
     public static void main(String[] args) {
 
+
         Properties configs = new Properties();
         configs.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         configs.put(ConsumerConfig.GROUP_ID_CONFIG, "test-group");
@@ -27,7 +30,6 @@ public class AsyncConsumer {
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(configs);
         consumer.subscribe(Arrays.asList(TOPIC_NAME));
-
         while(true) {
 
             // 컨슈머는 지속적으로 데이터를 가져오기 위해 반복 호출을 해야 한다.

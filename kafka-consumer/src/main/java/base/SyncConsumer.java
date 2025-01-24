@@ -1,3 +1,5 @@
+package base;
+
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
