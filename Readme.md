@@ -1,6 +1,13 @@
-# kafka
+# KAFKA
+
+---
 
 태그: Kafka
+
+<img src="https://blog.kakaocdn.net/dn/o6iQI/btq9gZe4tmv/D0j5RY7ZteLkCRO2qu4EHK/img.jpg" height="200">
+
+노션 정리: [정리 노트](https://fuchsia-sceptre-8b6.notion.site/kafka-18586943310e80cfa163d9c190677808?pvs=4)
+
 
 ## 토픽
 
