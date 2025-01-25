@@ -3,6 +3,8 @@ spring:
     consumer:
       bootstrap-servers: localhost:9092
     listener:
+      # 배치 커밋 리스너를 사용하기 위해서는 AckMode 값을 설정해주어야 한다. (BatchAcknowledgingMessageListener를 의미)
       ack-mode: MANUAL_IMMEDIATE
-      type: SINGLE
+      #type: SINGLE
+      type: batch
 
