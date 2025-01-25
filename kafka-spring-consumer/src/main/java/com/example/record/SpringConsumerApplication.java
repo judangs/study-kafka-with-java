@@ -1,9 +1,8 @@
-package com.example;
+package com.example.record;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -11,7 +10,7 @@ import org.springframework.kafka.annotation.PartitionOffset;
 import org.springframework.kafka.annotation.TopicPartition;
 
 @SpringBootApplication
-public class SpringConsumerApplication implements CommandLineRunner {
+public class SpringConsumerApplication {
 
     public static final Logger logger = LoggerFactory.getLogger(SpringConsumerApplication.class);
 
@@ -19,7 +18,7 @@ public class SpringConsumerApplication implements CommandLineRunner {
         가장 기본적인 리스너 선언으로 poll()이 호출되어 가져온 레코드들은 차례대로 개별 레코드의 메시지 값을 파라미터로 받게 된다.
      */
     @KafkaListener(topics = "test",
-        groupId = "test-group-00")
+            groupId = "test-group-00")
     public void recordListener(ConsumerRecord<String, String> record) {
         logger.info(record.toString());
     }
@@ -36,8 +35,8 @@ public class SpringConsumerApplication implements CommandLineRunner {
     @KafkaListener(topics = "test",
             groupId = "test-group-02",
             properties = {
-                "max.poll.interval.ms:60000",
-                "auto.offset.reset:earliest"
+                    "max.poll.interval.ms:60000",
+                    "auto.offset.reset:earliest"
             })
     public void singleTopicWithPropertiesListener(String message) {
         logger.info(message);
@@ -61,19 +60,15 @@ public class SpringConsumerApplication implements CommandLineRunner {
     @KafkaListener(topicPartitions = {
             @TopicPartition(topic = "test01", partitions = {"0", "1"}),
             @TopicPartition(topic = "test03", partitionOffsets =
-                @PartitionOffset(partition = "0", initialOffset = "3"))
+            @PartitionOffset(partition = "0", initialOffset = "3"))
     }, groupId = "test-group-04")
     public void listenSpecificPartition(ConsumerRecord<String, String> record) {
         logger.info(record.toString());
     }
 
     public static void main(String[] args) {
-        SpringApplication application = new SpringApplication(SpringConsumerApplication.class);
-        application.run(args);
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-
+//        SpringApplication application = new SpringApplication(SpringConsumerApplication.class);
+//        application.run(args);
+        SpringApplication.run(SpringConsumerApplication.class, args);
     }
 }
